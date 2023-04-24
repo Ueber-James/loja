@@ -1,12 +1,88 @@
 <h2 class="contact__title"> Entre em contato</h2>
 <section class="contact__container">
-  <form class="contact-form">
-    <input type="text" placeholder="Digite seu nome"/>
-    <input type="text" placeholder="Digite o assunto"/>
-    <input type="tel" placeholder="(00) 0 0000-0000"/>
-    <input type="email" placeholder="Digite o seu email"/>
-    <textarea maxlength="300" placeholder="Digite a sua mensagem"></textarea>
-    <button>Envia</button>
+  <form class="contact-form" [formGroup]="formeContato" (ngSubmit)="enviarForm()" >
+    <input type="text"
+     placeholder="Digite seu nome"
+     formControlName="nome"
+    [class.valid]="formeContato.controls['nome'].valid"
+    [class.invalid]="formeContato.controls['nome'].invalid &&
+    (formeContato.controls['nome'].touched || formeContato.controls['nome'].dirty)"/>
+    <div *ngIf="formeContato.controls['nome'].invalid &&
+    (formeContato.controls['nome'].touched || formeContato.controls['nome'].dirty)">
+      <small class="error-message" *ngIf="formeContato.controls['nome'].hasError('minlength')">
+        Esse campo precisa de no minimo 4 caracteres
+      </small>
+      <small class="error-message" *ngIf="formeContato.controls['nome'].hasError('required')">
+        Esse campo precisa ser preenchido
+      </small>
+    </div>
+
+    <input type="assunto" placeholder="Digite o assunto"
+    formControlName="assunto"
+    [class.valid]="formeContato.controls['assunto'].valid"
+    [class.invalid]="formeContato.controls['assunto'].invalid &&
+    (formeContato.controls['assunto'].touched || formeContato.controls['assunto'].dirty)"
+    />
+    <div *ngIf="formeContato.controls['assunto'].invalid &&
+    (formeContato.controls['assunto'].touched || formeContato.controls['assunto'].dirty)">
+      <small class="error-message" *ngIf="formeContato.controls['assunto'].hasError('minlength')">
+        Esse campo precisa de no minimo 10 caracteres
+      </small>
+      <small class="error-message" *ngIf="formeContato.controls['assunto'].hasError('required')">
+        Esse campo precisa ser preenchido
+      </small>
+    </div>
+    <input type="tel" placeholder="(00) 0 0000-0000"
+    formControlName="telefone"
+    [class.valid]="formeContato.controls['telefone'].valid"
+    [class.invalid]="formeContato.controls['telefone'].invalid &&
+    (formeContato.controls['telefone'].touched || formeContato.controls['telefone'].dirty)"
+    />
+    <div *ngIf="formeContato.controls['telefone'].invalid &&
+    (formeContato.controls['telefone'].touched || formeContato.controls['telefone'].dirty)">
+      <small class="error-message" *ngIf="formeContato.controls['telefone'].hasError('minlength')">
+        Esse campo precisa de no minimo 11 caracteres
+      </small>
+      <small class="error-message" *ngIf="formeContato.controls['telefone'].hasError('required')">
+        Esse campo precisa ser preenchido
+      </small>
+    </div>
+
+    <input type="email" placeholder="Digite o seu email"
+    formControlName="email"
+    [class.valid]="formeContato.controls['email'].valid"
+    [class.invalid]="formeContato.controls['email'].invalid &&
+    (formeContato.controls['email'].touched || formeContato.controls['email'].dirty)"
+    />
+    <div *ngIf="formeContato.controls['email'].invalid &&
+    (formeContato.controls['email'].touched || formeContato.controls['email'].dirty)">
+
+
+      <small class="error-message" *ngIf="formeContato.controls['email'].hasError('email')">
+        Esse campo prescisa ser um email valido
+      </small>
+      <small class="error-message" *ngIf="formeContato.controls['email'].hasError('required')">
+        Esse campo precisa ser preenchido
+      </small>
+    </div>
+    <textarea maxlength="300" rows="4" placeholder="Digite a sua mensagem..."
+    formControlName="mensagem"
+    [class.valid]="formeContato.controls['mensagem'].valid"
+    [class.invalid]="formeContato.controls['mensagem'].invalid &&
+    (formeContato.controls['mensagem'].touched || formeContato.controls['mensagem'].dirty)"
+    ></textarea>
+    <div *ngIf="formeContato.controls['mensagem'].invalid &&
+    (formeContato.controls['mensagem'].touched || formeContato.controls['mensagem'].dirty)">
+
+
+      <small class="error-message" *ngIf="formeContato.controls['mensagem'].hasError('minlength')">
+        Esse campo prescisa ser um mensagem valido
+      </small>
+      <small class="error-message" *ngIf="formeContato.controls['mensagem'].hasError('required')">
+        Esse campo precisa ser preenchido
+      </small>
+    </div>
+    <button [disabled]="formeContato.invalid" type="submit">Envia</button>
 
 
   </form>

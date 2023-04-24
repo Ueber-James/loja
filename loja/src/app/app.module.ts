@@ -9,14 +9,16 @@ import { FootComponent } from './foot/foot.component';
 import { AppRouterModule } from './app-router.module';
 import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar"
+import { MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { BarraPesquisaComponent } from './barra-pesquisa/barra-pesquisa.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FootComponent,
-    NaoEncontradoComponent
+    NaoEncontradoComponent,
+    BarraPesquisaComponent
   ],
   imports: [
     BrowserModule,
